@@ -1,0 +1,30 @@
+<ion-content>
+  <!-- {{ recentChats | json }} -->
+  <ion-list>
+    <ion-item *ngFor="let chat of recentChats">
+      <ion-avatar slot="start">
+        <img [src]="chat.avatar">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{chat.name}}</h2>
+            <p>{{chat.message}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="recentChats && recentChats.length">
+  </ion-list>
+  <div *ngIf="recentChats && !recentChats.length" class="center-middle">
+    <p>
+      Para iniciar una conversación presiona el icono <ion-icon name="chatboxes"></ion-icon> hasta abajo de la pantalla
+    </p>
+  </div>
+
+  
+  
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['contacts']" routerDirection="forward">
+      <ion-icon name="chatboxes"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

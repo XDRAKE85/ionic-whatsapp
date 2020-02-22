@@ -1,0 +1,43 @@
+<ion-header id="mainHeader" no-border>
+  <ion-toolbar>
+    <ion-title>
+      Whatsapp
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="chatboxes"></ion-icon>
+      </ion-button>
+      <ion-button (click)="presentPopover()">
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar id="mainTabs" slot="top">
+      <ion-tab-button tab="chats">
+        <ion-icon name="chatboxes"></ion-icon>
+        <ion-label>CHATS</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+      <ion-tab-button tab="estados">
+        <ion-icon name="person"></ion-icon>
+        <ion-label>ESTADOS</ion-label>
+        <ion-badge>10</ion-badge>
+      </ion-tab-button>
+      <ion-tab-button tab="llamadas">
+        <ion-icon name="call"></ion-icon>
+        <ion-label>LLAMADAS</ion-label>
+        <ion-badge>18</ion-badge>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs> 
+  
+  
+</ion-content>

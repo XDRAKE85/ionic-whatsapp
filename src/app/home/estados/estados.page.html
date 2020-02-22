@@ -1,0 +1,49 @@
+<ion-content>
+<!-- {{ recentChats | json }} -->
+<ion-list>
+  <ion-item>
+    <ion-avatar slot="start">
+      <img src="https://i.pravatar.cc/150">
+    </ion-avatar>
+    <ion-label>
+      <h2>David Duran </h2>
+          <p>Hoy 15:46</p> 
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-list *ngIf=" recentEstados && recentEstados.length">
+  <ion-list-header color="#3171e0">
+    <ion-label>Recientes</ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let estado of recentEstados">
+    <ion-avatar slot="start">
+      <img [src]="estado.avatar">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{estado.name}}</h2>
+          <p>{{estado.fecha}}</p> 
+    </ion-label>
+  </ion-item>
+</ion-list>
+<ion-list>
+  <ion-list-header color="Medium">
+    <ion-label>Vistos</ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let estado of vistosEstados">
+    <ion-avatar slot="start">
+      <img [src]="estado.avatar">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{estado.name}}</h2>
+          <p>{{estado.fecha}}</p> 
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="camera"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>

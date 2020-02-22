@@ -1,0 +1,41 @@
+<ion-header >
+  <ion-toolbar *ngIf="!search">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        Contactos
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="showSearch()">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="white-toolbar" [hidden]="!search">
+    <ion-buttons slot="start" (click)="closeSearch()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-buttons>
+    <ion-title>
+      <ion-searchbar #searchInput clearInput placeholder="Buscar..." color="danger" (ionInput)="filterSearch($event)"></ion-searchbar>
+      <!-- #nombreDelObjeto con el # se asigna el nombre del elemento -->
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf=" contacts && contacts.length">
+    <ion-virtual-scroll [items]="filteredContacts" approxItemHeight="71px">
+      <ion-item *virtualItem="let contact;">
+        <ion-avatar slot="start">
+          <img src="assets/default-avatar.png">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{contact.displayName}}</h2>
+              <p>Disponible</p>
+        </ion-label>  
+      </ion-item>
+    </ion-virtual-scroll>
+
+  </ion-list>
+</ion-content>

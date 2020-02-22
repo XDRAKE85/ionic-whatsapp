@@ -1,0 +1,13 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registra tu Dispositivo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-input type="number" placeholder="Escribe tu numero" [(ngModel)]="phone_number"></ion-input>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-button (click)="savePhone()" size="full" [disabled]="!phone_number">Guardar</ion-button>
+</ion-footer>

@@ -1,0 +1,10 @@
+//
+:host {
+  .center-middle {
+		height: 100%;
+		display: flex; /* or inline-flex */
+		flex-direction: row;
+		align-items: center;
+		padding: 50px;
+  }
+}
