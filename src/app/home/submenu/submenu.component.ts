@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-submenu',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./submenu.component.scss'],
 })
 export class SubmenuComponent implements OnInit {
-
-  constructor() { }
+  constructor(
+    private popoverController: PopoverController
+  ) { }
 
   ngOnInit() {}
-
+  closePopover() {
+    this.popoverController.dismiss();
+    
+  }
 }
