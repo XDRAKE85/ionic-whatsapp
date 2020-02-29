@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./ajustes/perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./ajustes/perfil/perfil.module').then( m => m.PerfilPageModule),
+    canActivate : [AuthGuard]
   },
 ];
 
