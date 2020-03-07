@@ -1,0 +1,12 @@
+:host{
+    .phone_selector{
+        display: flex;
+        flex-direction: row;
+        .area_code{
+            width: 150px;
+        }
+        .phone_number{
+            flex-grow: 1;
+        }
+    }
+}

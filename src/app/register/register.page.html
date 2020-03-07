@@ -5,10 +5,20 @@
       <ion-card-title>Registra tu Dispositivo</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-input type="number" placeholder="Escribe tu numero" [(ngModel)]="phone_number"></ion-input>
+      <div class="phone_selector">
+        <ion-item class="area_code">
+          <ion-label position="floating">Códgo de área</ion-label>
+          <ion-input type="text" placeholder="+52" [(ngModel)]="area_code"></ion-input>
+        </ion-item>
+        <ion-item class="phone_number">
+          <ion-label position="floating">Escribe tu numero</ion-label>
+          <ion-input type="number" placeholder="551843218" [(ngModel)]="phone_number"></ion-input>
+        </ion-item>
+       </div>
+      <ion-button (click)="savePhone()" size="full" [disabled]="!area_code || !phone_number">Guardar</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
 <ion-footer>
-  <ion-button (click)="savePhone()" size="full" [disabled]="!phone_number">Guardar</ion-button>
+  
 </ion-footer>

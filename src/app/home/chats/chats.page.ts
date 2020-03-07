@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-chats',
@@ -35,9 +36,19 @@ export class ChatsPage implements OnInit {
     }
 ]; */
 
-  constructor() { }
+  constructor(
+    private usersService: UsersService
+  ) { }
 
   ngOnInit() {
+    this.usersService.getUsers().subscribe(
+      (userSnap) => {
+        console.log(userSnap);
+        userSnap.forEach( userData => {
+          console.log(userData.payload.doc.data());
+        })
+      }
+    );
   }
 
 }

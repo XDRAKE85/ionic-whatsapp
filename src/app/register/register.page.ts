@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-register',
@@ -13,9 +14,11 @@ import { AlertController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
   phone_number:Number ;
+  area_code:string;
+  userfire:any;
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
   constructor( private common: CommonService, private afAuth:AngularFireAuth,
-    private router:Router, public alertController: AlertController) {
+    private router:Router, public alertController: AlertController, private usersService: UsersService) {
     
    }
    
@@ -32,7 +35,8 @@ export class RegisterPage implements OnInit {
   }
 
   savePhone(){
-    this.afAuth.auth.signInWithPhoneNumber('+52'+this.phone_number, this.recaptchaVerifier).then(
+    //this.afAuth.auth.signInWithPhoneNumber("+52"+this.phone_number, this.recaptchaVerifier).then(
+    this.afAuth.auth.signInWithPhoneNumber(this.area_code+this.phone_number, this.recaptchaVerifier).then(
       (data) =>{
         console.log('data',data)
         this.askCode( data )
@@ -66,6 +70,13 @@ export class RegisterPage implements OnInit {
           console.log( data);
           smsRequest.confirm(data.confirmationCode).then( (result) =>{
           //User signed in successfully
+          this.usersService.addUser( result.user.uid,{
+            displayName:result.user.displayName,
+            phoneNumber:result.user.phoneNumber,
+            photoURL:result.user.photoURL,
+            email:result.user.email,
+            emailVerified:result.user.email,
+          });
           console.log('signed in', result);
           this.router.navigate(['/home']);
         }, (err) => {

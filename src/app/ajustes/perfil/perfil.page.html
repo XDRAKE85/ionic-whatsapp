@@ -9,34 +9,35 @@
 
 <ion-content *ngIf="user">
   <div class="profile-picture">
-    <img [src]="user.photoURL" *ngIf="user.photoURL && !profilePicture">
-    <img src="assets/default-avatar.png" *ngIf="!user.photoURL && !profilePicture">
-    <img [src]="profilePicture" *ngIf="profilePicture" >
+    <ion-avatar *ngIf="user.photoURL && !profilePicture">
+      <img [src]="user.photoURL"/>
+    </ion-avatar>
+    <ion-avatar  *ngIf="!user.photoURL && !profilePicture">
+      <img src="assets/default-avatar.png"/>
+    </ion-avatar>
+    <ion-avatar  *ngIf="profilePicture" >
+      <img [src]="profilePicture"/>
+    </ion-avatar>
     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-      <ion-fab-button (click)="takePicture()" >
+      <ion-fab-button (click)="presentActionSheet()" >
         <ion-icon name="camera"></ion-icon>
       </ion-fab-button>
     </ion-fab>
   </div>
   <ion-list>
     <ion-item>
-      <ion-avatar slot="start">
-        <ion-icon name="person"></ion-icon>
-      </ion-avatar>
-      <ion-label>
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-label position="floating">
           <h4>Nombre</h4>
-          <hr>
       </ion-label>
-      <ion-input type="text" placeholder="Escribe tu Nombre" [(ngModel)]="user.displayName" (ionBlur)="updateUser($event)" value="David Duran"></ion-input>
+      <ion-input #nameInput type="text" placeholder="Escribe tu Nombre" [(ngModel)]="user.displayName" (ionBlur)="updateUser('displayName',$event)" (keyup.enter)="changeName()" value="David Duran"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-avatar slot="start">
-        <ion-icon name="information-circle"></ion-icon>
-      </ion-avatar>
-      <ion-label>
+      <ion-icon name="create" slot="start"></ion-icon>
+      <ion-label position="floating">
           <h4>Info</h4>
-          <p>Disponible</p>
       </ion-label>
+      <ion-input #nameInput type="text" placeholder="Escribe tu estado" [(ngModel)]="user.displayStatus" (ionBlur)="updateUser('estado',$event)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-avatar slot="start">

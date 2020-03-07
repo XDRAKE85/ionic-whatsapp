@@ -2,9 +2,10 @@
     .profile-picture{
         text-align: center;
         position: relative;
-        img{
+        ion-avatar{
             width: 200px;
-            border-radius: 50%;
+            height: 200px;
+            margin: 0 auto;
         }
         ion-fab{
             margin-left: 70px;

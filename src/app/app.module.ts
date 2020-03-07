@@ -20,6 +20,9 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +32,9 @@ import { environment } from '../environments/environment';
     AppRoutingModule, 
     RouterModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule],
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule],
   providers: [
     StatusBar,
     SplashScreen,
