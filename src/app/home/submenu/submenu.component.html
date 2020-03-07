@@ -1,3 +1,8 @@
-<p>
-  submenu works!
-</p>
+<ion-list lines="none">
+  <ion-item>Nuevo Grupo</ion-item>
+  <ion-item>Nueva Difusion</ion-item>
+  <ion-item>WhatsApp Web</ion-item>
+  <ion-item>Mensajes destacados</ion-item>
+  <ion-item [routerLink]="['perfil']" routerDirection="forward" (click)="closePopover()">Ajustes</ion-item>
+</ion-list>
+

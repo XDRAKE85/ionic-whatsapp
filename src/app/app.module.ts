@@ -14,11 +14,22 @@ import { RouterModule } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { TabsService } from 'src/app/services/tabs.service';
 import { Contacts } from '@ionic-native/contacts';
+import { Camera } from '@ionic-native/camera/ngx';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, RouterModule],
+  imports: [BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    RouterModule, 
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -26,7 +37,8 @@ import { Contacts } from '@ionic-native/contacts';
     Contacts,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     CommonService,
-    TabsService
+    TabsService,
+    Camera, 
   ],
   
   bootstrap: [AppComponent]

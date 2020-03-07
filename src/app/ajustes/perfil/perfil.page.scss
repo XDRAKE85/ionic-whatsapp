@@ -1,0 +1,14 @@
+:host{
+    .profile-picture{
+        text-align: center;
+        position: relative;
+        img{
+            width: 200px;
+            border-radius: 50%;
+        }
+        ion-fab{
+            margin-left: 70px;
+        }
+    }
+
+}

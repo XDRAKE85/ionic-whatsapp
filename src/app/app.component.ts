@@ -27,15 +27,17 @@ export class AppComponent {
     this.platform.ready().then(() => {
       console.log('device ready')
       //this.common.nativeStorage.clear();
-      this.common.getItem('phone-number').then(
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+      /*this.common.getItem('phone-number').then(
         (value) =>{
-          if(!value){
+          //if(!value){
             this.common.navRoot('/register');
-          }
+          //}
           this.statusBar.styleDefault();
           this.splashScreen.hide();
         }
-      )
+      )*/
       
     });
   }

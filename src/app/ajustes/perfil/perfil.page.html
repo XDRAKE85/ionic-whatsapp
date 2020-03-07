@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="user">
+  <div class="profile-picture">
+    <img [src]="user.photoURL" *ngIf="user.photoURL && !profilePicture">
+    <img src="assets/default-avatar.png" *ngIf="!user.photoURL && !profilePicture">
+    <img [src]="profilePicture" *ngIf="profilePicture" >
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="takePicture()" >
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-icon name="person"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+          <h4>Nombre</h4>
+          <hr>
+      </ion-label>
+      <ion-input type="text" placeholder="Escribe tu Nombre" [(ngModel)]="user.displayName" (ionBlur)="updateUser($event)" value="David Duran"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-icon name="information-circle"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+          <h4>Info</h4>
+          <p>Disponible</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-icon name="call"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+          <h2>Telefono</h2>
+          <p>554849223</p>
+      </ion-label>
+    </ion-item>
+    <ion-item (click)="closeSession()">
+      <ion-icon name="exit" slot="start"></ion-icon>
+      <ion-label>
+          <p>Cerrar sesión</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

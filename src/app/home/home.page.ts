@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-  import { SubmenuComponent } from './submenu/submenu.component';
+import { SubmenuComponent } from './submenu/submenu.component';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,8 @@ export class HomePage {
     const popover = await this.popoverController.create({
       component: SubmenuComponent,
       event: ev,
-      translucent: true
+      translucent: true,
+      //backdropDismiss:false
     });
     return await popover.present();
   }

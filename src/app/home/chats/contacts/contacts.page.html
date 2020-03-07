@@ -10,19 +10,18 @@
         <ion-button (click)="showSearch()">
           <ion-icon name="search"></ion-icon>
         </ion-button>
-        </ion-buttons>
+      </ion-buttons>
   </ion-toolbar>
   <ion-toolbar class="white-toolbar" [hidden]="!search">
     <ion-buttons slot="start" (click)="closeSearch()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-buttons>
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-buttons>
     <ion-title>
       <ion-searchbar #searchInput clearInput placeholder="Buscar..." color="danger" (ionInput)="filterSearch($event)"></ion-searchbar>
       <!-- #nombreDelObjeto con el # se asigna el nombre del elemento -->
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-list *ngIf=" contacts && contacts.length">
     <ion-virtual-scroll [items]="filteredContacts" approxItemHeight="71px">
