@@ -50,10 +50,12 @@ export class PerfilPage implements OnInit {
       this.uploadFile(this.user.uid+'.jpg', 'data:image/jpeg;base64,' + imageData).then(
         (result) => {
           console.log(result)
+          //Agregar URL
           this.user.updateProfile({
             photoURL:result
           }).then(
             () => {
+              this.usersService.updateUser(this.user.uid, {photoURL: result})
               this.profilePicture=result;
               this.commonService.dismissLoading();
               this.commonService.msg('El avatar se ha actualizado')

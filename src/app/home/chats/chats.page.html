@@ -1,13 +1,13 @@
 <ion-content>
   <!-- {{ recentChats | json }} -->
   <ion-list>
-    <ion-item *ngFor="let chat of recentChats">
+    <ion-item *ngFor="let chat of recentChats" [routerLink]="['details/'+chat.id]" routerDirection="forward">
       <ion-avatar slot="start">
-        <img [src]="chat.avatar">
+        <img [src]="chat.photoURL">
       </ion-avatar>
       <ion-label>
-        <h2>{{chat.name}}</h2>
-            <p>{{chat.message}}</p>
+        <h2>{{chat.displayName}}</h2>
+            <p>{{chat.estado}}</p>
       </ion-label>
     </ion-item>
   </ion-list>

@@ -22,4 +22,12 @@ export class UsersService {
     this.user.updateProfile(userData);
     return this.firestore.collection('users').doc(uid).update(userData);
   }
+  getUserByPhone(phone:string){
+    phone=phone.replace(/\s/g,'')
+    console.log(phone)
+    return this.firestore.collection('users', ref => ref.where('phoneNumber','==',phone)).snapshotChanges()
+  }
+  getUserById(id:string){
+    return this.firestore.collection('users').doc(id).snapshotChanges()
+  }
 }

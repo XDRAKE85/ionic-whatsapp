@@ -25,7 +25,7 @@
 <ion-content>
   <ion-list *ngIf=" contacts && contacts.length">
     <ion-virtual-scroll [items]="filteredContacts" approxItemHeight="71px">
-      <ion-item *virtualItem="let contact;">
+      <ion-item *virtualItem="let contact;" (click)="addChat(contact)">
         <ion-avatar slot="start">
           <img src="assets/default-avatar.png">
         </ion-avatar>

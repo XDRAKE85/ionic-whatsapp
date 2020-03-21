@@ -1,21 +1,38 @@
 import { Injectable } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from 'src/app/models/user.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
   loading:any;
+  user:User;
+  
   constructor(
     public nativeStorage: NativeStorage, 
     public navController: NavController,
     public toastController: ToastController,
     public loadingCtrl: LoadingController,
+    private AFauth: AngularFireAuth,
   ) { 
     console.log('Inicializado servicio common.')
-  }
+    this.AFauth.user.subscribe( userUpdate => {
+      this.user= new User({
+        uid: userUpdate.uid,
+        displayName: userUpdate.displayName,
+        phoneNumber: userUpdate.phoneNumber,
+        photoURL: userUpdate.photoURL,
+      })
+      console.log('user updated',this.user);
+    });
 
+  }
+  getCurrentUser(){
+   return this.AFauth.user; 
+  }
   setItem(key:string, value:any){
     return new Promise((resolve) => {
       this.nativeStorage.setItem(key,value).then(
@@ -41,7 +58,9 @@ export class CommonService {
   navRoot(page:string){
     this.navController.navigateRoot(page);
   }
-
+  navForward(page:string){
+    this.navController.navigateForward(page);
+  }
   async msg(text:string, opt?: any) {
     const toast = await this.toastController.create({
       message: text,

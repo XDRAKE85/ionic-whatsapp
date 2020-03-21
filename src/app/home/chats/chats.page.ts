@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import { ChatService } from 'src/app/services/chat.service';
+import { CommonService} from 'src/app/services/common.service';
+import { Chat } from 'src/app/models/chat.model';
 
 @Component({
   selector: 'app-chats',
@@ -7,7 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./chats.page.scss'],
 })
 export class ChatsPage implements OnInit {
-  recentChats = [];
+  recentChats: Chat[] = [];
   /* recentChats = [
     {
       avatar:'https://i.pravatar.cc/150',
@@ -19,36 +22,37 @@ export class ChatsPage implements OnInit {
       name: 'Juan Diaz',
       message: '¿A que hora salimos a comer?'
     },
-    {
-      avatar:'https://i.pravatar.cc/152',
-      name: 'Pedro Juarez',
-      message: '¿A que hora salimos a comer?'
-    },
-    {
-      avatar:'https://i.pravatar.cc/153',
-      name: 'Javier Zepeda',
-      message: '¿A que hora salimos a comer?'
-    },
-    {
-      avatar:'https://i.pravatar.cc/154',
-      name: 'Luis Duran',
-      message: '¿A que hora salimos a comer?'
-    }
+    
 ]; */
 
   constructor(
-    private usersService: UsersService
+    private common: CommonService,
+    private usersService: UsersService,
+    private chatService:ChatService,
   ) { }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe(
+    this.chatService.getChatList(this.common.user.uid).subscribe(
+      
+      (chatSnap) => {
+        this.recentChats=[];
+        chatSnap.forEach( chatData => {
+          var item = new Chat(chatData.payload.doc.data() ) 
+          item.id=chatData.payload.doc.id
+          this.recentChats.push(item)
+          //this.recentChats.push( new Chat(item) )
+        })
+        
+      }
+    );
+   /* this.usersService.getUsers().subscribe(
       (userSnap) => {
         console.log(userSnap);
         userSnap.forEach( userData => {
           console.log(userData.payload.doc.data());
         })
       }
-    );
+    );*/
   }
 
 }

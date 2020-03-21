@@ -9,7 +9,7 @@ import { Platform } from '@ionic/angular';
 export class TabsService {
  
   hideTabBarPages = [
-    'contacts',
+    'contacts', '_details',
   ];
  
   constructor(private router: Router, private platform: Platform) {

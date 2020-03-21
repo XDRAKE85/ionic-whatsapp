@@ -3,39 +3,52 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-avatar slot="start">
+      <img src="user.photoURL"/>
+    </ion-avatar>
     <ion-title>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img src="https://i.pravatar.cc/150">
-        </ion-avatar>
-        <ion-label>
-          <h2>David Duran</h2>
-              <p>13:48</p>
-        </ion-label>
-     </ion-item>
+      {{ user.displayName}}
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="videocam"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="call"></ion-icon>
+      </ion-button>
+      <ion-button (clic)= "presentPopover($event)">
+        <ion-icon name="more"></ion-icon>  
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="background-image" no-scroll padding>
+  <ion-virtual-scroll [items]="messages" approxItemHeight="120px">
+    <ion-item *virtualItem="let item; let itemBounds = bounds;">
+      {{ item.text}}
+    </ion-item>
+  </ion-virtual-scroll>
 </ion-content>
-<ion-footer>
-  <ion-item>
-    <ion-icon name="happy"></ion-icon>
+<ion-footer no-border>
+  <ion-toolbar transparent translucent>
+    <div class="input-text">
       <ion-item>
-        <ion-input type="text" placeholder="Escribe un mensaje"></ion-input>
+        <ion-fab-button size="small" color="light" slot="start">
+          <ion-icon name="happy"></ion-icon>
+        </ion-fab-button>
+        <ion-input type="text" placeholder="Escribe un mensaje" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()"></ion-input>
+        <ion-fab-button size="small" color="light" slot="end">
+          <ion-icon name="attach"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button size="small" color="light" slot="end">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
       </ion-item>
-      <ion-item>
-        <ion-icon name="time"></ion-icon>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="camera"></ion-icon>
-      </ion-item>
-  </ion-item>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="chatboxes"></ion-icon>
+    </div>
+    <ion-fab-button color="primary" slot="end">
+      <ion-icon name="mic"></ion-icon>
     </ion-fab-button>
-  </ion-fab>  
+  </ion-toolbar>
+  
 </ion-footer>
